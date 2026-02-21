@@ -1,0 +1,830 @@
+/* Wireframe colors: cream #FFF3CC, header dark, card placeholders teal/pink/orange, overlay blur */
+
+.app {
+  min-height: 100vh;
+  background-color: #FFF3CC;
+}
+
+@media (max-width: 768px) {
+  .app {
+    background-color: #FFF8DC;
+  }
+}
+
+/* Header bar - dark grey/black, white text */
+.header-bar {
+  background-color: #2d2d2d;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.header-label {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+/* Main content */
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.main-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  margin: 1rem 0 2rem;
+}
+
+/* Intro cards - 3 across desktop, stack mobile */
+.intro-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .intro-cards {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.intro-card {
+  background: transparent;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .intro-card {
+    border-radius: 10px;
+  }
+}
+
+.intro-card-image {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 6px 6px 0 0;
+}
+
+@media (max-width: 768px) {
+  .intro-card-image {
+    border-radius: 8px 8px 0 0;
+  }
+}
+
+/* Card 1: light teal/mint with fine texture */
+.card-placeholder-teal {
+  background-color: #7eb8b8;
+  background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(0,0,0,0.06) 0%, transparent 40%);
+  box-shadow: inset 0 0 80px rgba(0,0,0,0.04);
+}
+
+/* Card 2: pinkish-purple with blurred reddish-orange polka dots */
+.card-placeholder-pink {
+  background-color: #e8d5e0;
+  background-image: radial-gradient(circle at 25% 25%, rgba(220,100,80,0.55) 0%, transparent 28%),
+    radial-gradient(circle at 75% 40%, rgba(220,100,80,0.5) 0%, transparent 25%),
+    radial-gradient(circle at 50% 75%, rgba(220,100,80,0.45) 0%, transparent 30%);
+}
+
+/* Card 3: orange with textured/speckled */
+.card-placeholder-orange {
+  background-color: #e89550;
+  background-image: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.2) 0%, transparent 3%),
+    radial-gradient(circle at 90% 80%, rgba(0,0,0,0.08) 0%, transparent 3%);
+  background-size: 8px 8px;
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.06);
+}
+
+.intro-card-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0.75rem 0 0.35rem;
+  text-align: left;
+}
+
+.intro-card-description {
+  font-size: 0.9rem;
+  color: #000;
+  margin: 0;
+  text-align: left;
+  line-height: 1.45;
+}
+
+/* ─── Attractions section ─── */
+.attractions-section {
+  background-color: #F5E8B8;
+  padding: 2rem 1rem 2.5rem;
+  margin: 0 -1rem;
+}
+
+@media (max-width: 768px) {
+  .attractions-section {
+    padding: 1.25rem 0.75rem 1.5rem;
+    margin: 0 -0.5rem;
+  }
+}
+
+.section-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+  font-weight: 700;
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.35);
+  text-align: center;
+  margin: 0 0 2rem;
+  padding: 0.55rem 1rem;
+}
+
+/* ─── Carousel wrapper ─── */
+.attractions-carousel-outer {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.attractions-viewport {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.attractions-track {
+  display: flex;
+  transition: transform 0.45s ease-in-out;
+  will-change: transform;
+}
+
+/* ─── Individual attraction card ─── */
+.attraction-card {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+.attraction-card-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #C8C8C8;
+}
+
+@media (max-width: 768px) {
+  .attraction-card-inner {
+    aspect-ratio: 3 / 4;
+  }
+}
+
+/* Title overlay, top-left */
+.attraction-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* Grey image placeholder - fills the entire card */
+.attraction-image-placeholder {
+  position: absolute;
+  inset: 0;
+  background-color: #C8C8C8;
+}
+
+.attraction-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Blurred description overlay at bottom */
+.attraction-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 1.25rem 1.5rem;
+  background: rgba(200, 200, 200, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .attraction-overlay {
+    padding: 1rem 1rem;
+  }
+}
+
+.attraction-overlay-text {
+  margin: 0;
+  font-size: 0.925rem;
+  color: #000;
+  line-height: 1.55;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+/* ─── Navigation arrows ─── */
+.card-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  color: #000;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.card-arrow:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.card-arrow:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.card-arrow-left {
+  left: -24px;
+}
+
+.card-arrow-right {
+  right: -24px;
+}
+
+@media (max-width: 960px) {
+  .card-arrow-left {
+    left: 0.5rem;
+  }
+  .card-arrow-right {
+    right: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-arrow {
+    width: 40px;
+    height: 40px;
+  }
+  .card-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* ─── Dot indicators ─── */
+.attraction-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.attraction-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid #000;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.attraction-dot:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.attraction-dot-active {
+  background: #000;
+}
+
+.attraction-dot:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.travel-options-section {
+  margin-top: 2.5rem;
+  padding: 1.5rem 0.25rem 2.25rem;
+}
+
+.travel-options-title {
+  margin: 0 0 1.25rem;
+  padding: 0.55rem 1rem;
+  background-color: rgba(255, 255, 255, 0.35);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.travel-options-intro,
+.travel-options-subtext {
+  margin: 0 0 1.4rem;
+  max-width: 980px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.15rem, 2.8vw, 1.9rem);
+  line-height: 1.35;
+}
+
+.travel-options-list {
+  margin: 0 0 2.2rem;
+  padding-left: 1.4rem;
+  max-width: 980px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1rem, 2.3vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.travel-options-list a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ─── Accordion questions ─── */
+.travel-accordion-item {
+  max-width: 980px;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.travel-accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.9rem 0.25rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+  line-height: 1.35;
+  text-align: left;
+  color: #000;
+}
+
+.travel-accordion-trigger:hover {
+  color: #333;
+}
+
+.travel-accordion-trigger:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.travel-accordion-chevron {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.travel-accordion-trigger-open .travel-accordion-chevron {
+  transform: rotate(180deg);
+}
+
+.travel-accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 0.25rem;
+}
+
+.travel-accordion-panel-open {
+  max-height: 300px;
+  padding: 0 0.25rem 1rem;
+}
+
+.travel-accordion-answer {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  line-height: 1.6;
+  color: #333;
+}
+
+/* ─── Shopping & Hotels section ─── */
+.shopping-hotels-section {
+  margin-top: 2.5rem;
+  padding: 1.5rem 0.25rem 2.5rem;
+}
+
+.shopping-hotels-title {
+  margin: 0 0 1.5rem;
+  padding: 0.55rem 1rem;
+  background-color: rgba(255, 255, 255, 0.35);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.shopping-hotels-block {
+  max-width: 980px;
+  margin-bottom: 2rem;
+}
+
+.shopping-hotels-subtitle {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: #000;
+}
+
+.shopping-hotels-text {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  line-height: 1.65;
+  color: #222;
+  margin: 0 0 1rem;
+}
+
+.shopping-hotels-text a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.shopping-hotels-text a:hover {
+  color: #555;
+}
+
+.shopping-hotels-list {
+  margin: 0 0 1.25rem;
+  padding-left: 1.4rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  line-height: 1.75;
+  color: #222;
+}
+
+.shopping-hotels-list a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.shopping-hotels-list a:hover {
+  color: #555;
+}
+
+.shopping-hotels-list li {
+  margin-bottom: 0.35rem;
+}
+
+/* ─── Attar feature: image + personal note ─── */
+.attar-feature {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+@media (max-width: 640px) {
+  .attar-feature {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.attar-image-placeholder {
+  flex: 0 0 220px;
+  height: 260px;
+  background-color: #d9d0c4;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .attar-image-placeholder {
+    flex: none;
+    width: 100%;
+    height: 240px;
+  }
+}
+
+.attar-image-label {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+}
+
+.attar-note {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.45);
+  border-left: 3px solid #c9a96e;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.25rem;
+}
+
+.attar-note-text {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  line-height: 1.65;
+  color: #444;
+}
+
+.attar-note-icon {
+  color: #c9a96e;
+  font-size: 1.1rem;
+}
+
+/* ─── Itinerary section ─── */
+.itinerary-section {
+  margin-top: 2.5rem;
+  padding: 1.5rem 0.25rem 2.5rem;
+}
+
+.itinerary-title {
+  margin: 0 0 0.75rem;
+  padding: 0.55rem 1rem;
+  background-color: rgba(255, 255, 255, 0.35);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.itinerary-subtitle {
+  max-width: 860px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Metro day pass intro block */
+.itinerary-metro-pass {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 640px) {
+  .itinerary-metro-pass {
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
+
+.metro-pass-photo-placeholder {
+  flex: 0 0 180px;
+  height: 200px;
+  background-color: #d9d0c4;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .metro-pass-photo-placeholder {
+    flex: none;
+    width: 100%;
+    height: 180px;
+  }
+}
+
+.metro-pass-photo-label {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+}
+
+.metro-pass-info {
+  flex: 1;
+}
+
+.metro-pass-heading {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+  font-weight: 700;
+  margin: 0 0 0.6rem;
+  color: #000;
+}
+
+.metro-pass-text {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  line-height: 1.6;
+  color: #222;
+  margin: 0 0 0.6rem;
+}
+
+.metro-pass-tip {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  line-height: 1.6;
+  color: #555;
+  margin: 0.75rem 0 0;
+  padding: 0.6rem 0.8rem;
+  background: rgba(201, 169, 110, 0.12);
+  border-left: 3px solid #c9a96e;
+  border-radius: 0 6px 6px 0;
+}
+
+/* Timeline of stops */
+.itinerary-timeline {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.itinerary-stop {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.itinerary-stop:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 700px) {
+  .itinerary-stop {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.itinerary-stop-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.itinerary-stop-time {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+
+.itinerary-stop-name {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 0.5rem;
+}
+
+.itinerary-transport-badge {
+  display: inline-block;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+  margin-bottom: 0.6rem;
+}
+
+.itinerary-badge-metro {
+  background: #dce8f0;
+  color: #2a5f8a;
+}
+
+.itinerary-badge-uber {
+  background: #f5e6d0;
+  color: #8a5a2a;
+}
+
+.itinerary-badge-walk {
+  background: #ddf0dc;
+  color: #3a7a3a;
+}
+
+.itinerary-stop-details {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.9rem, 1.8vw, 1.02rem);
+  line-height: 1.65;
+  color: #333;
+  margin: 0 0 0.5rem;
+}
+
+.itinerary-stop-station {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+}
+
+/* Google Maps embed */
+.itinerary-stop-map {
+  flex: 0 0 300px;
+  height: 220px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.itinerary-stop-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 700px) {
+  .itinerary-stop-map {
+    flex: none;
+    width: 100%;
+    height: 200px;
+  }
+}
+
+/* Cost summary */
+.itinerary-cost-summary {
+  max-width: 600px;
+  margin: 2rem auto 0;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.itinerary-cost-heading {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: #000;
+  text-align: center;
+}
+
+.itinerary-cost-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.9rem, 1.8vw, 1.02rem);
+  line-height: 1.8;
+  color: #333;
+}
+
+.itinerary-cost-total {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: clamp(0.95rem, 1.9vw, 1.08rem);
+  color: #000;
+}
