@@ -1,8 +1,19 @@
 import { useState, useEffect, useCallback } from 'react'
 import './App.css'
 import AttractionCarousel from './AttractionCarousel'
-import museumImage from './museum.jpeg'
+import thePearlImage from './thepearl.jpeg'
+import introCardTwoImage from './new_im.jpeg'
+import introCardThreeImage from './shipping_card.jpeg'
 import musImage from './mus.jpg'
+import kataraImage from './katara.jpeg'
+import souqImage from './souq.webp'
+import pearlAttractionImage from './The pearl.jpg'
+import nationalAttractionImage from './National.jpg'
+import inlandSeaImage from './sea.avif'
+import attarsImage from './attars.jpg'
+import taxiImage from './taxi.jpg'
+import dohaMetroImage from './doha_metro.webp'
+import dohaMetroRouteMap from './Doha-Metro-route-map.png'
 
 const AUTO_SCROLL_MS = 5000
 
@@ -10,21 +21,26 @@ const INTRO_CARDS = [
   {
     id: 1,
     title: 'Tourist Attractions in Doha',
-    description: 'Call out a feature, benefit, or value of your site that can stand on its own.',
+    description: 'The best places to visit in Doha all in one place',
     placeholderClass: 'card-placeholder-teal',
-    image: museumImage,
+    image: thePearlImage,
+    targetSectionId: 'attractions-section',
   },
   {
     id: 2,
     title: 'Transport and other options',
-    description: 'Call out a feature, benefit, or value of your site that can stand on its own.',
+    description: 'Some imporatnt information about how you can navigate this beutiful city based  on your situation and preferences',
     placeholderClass: 'card-placeholder-pink',
+    image: introCardTwoImage,
+    targetSectionId: 'travel-options-section',
   },
   {
     id: 3,
     title: 'Shopping and hotels',
-    description: 'Call out a feature, benefit, or value of your site that can stand on its own.',
+    description: 'What is a trip without a couple of souveniers and a relaxing place to stay?',
     placeholderClass: 'card-placeholder-orange',
+    image: introCardThreeImage,
+    targetSectionId: 'shopping-hotels-section',
   },
 ]
 
@@ -41,30 +57,35 @@ const ATTRACTIONS = [
     title: 'Katara Cultural Village',
     description:
       'Katara Cultural Village is a prominent cultural and commercial hub. It features an amphitheatre, convention centre, and diverse dining and shopping options set in traditional architecture.',
+    image: kataraImage,
   },
   {
     id: 3,
     title: 'Souq Waqif',
     description:
       'Souq Waqif is a traditional market with restored buildings, alleyways, and a variety of shops, restaurants, and cultural experiences in the heart of Doha.',
+    image: souqImage,
   },
   {
     id: 4,
     title: 'The Pearl-Qatar',
     description:
       'The Pearl-Qatar is an artificial island with marinas, residential towers, and Mediterranean-style quarters, offering dining, shopping, and waterfront promenades.',
+    image: pearlAttractionImage,
   },
   {
     id: 5,
     title: 'National Museum of Qatar',
     description:
       'The National Museum of Qatar presents the story of Qatar through innovative architecture and immersive exhibitions in a building inspired by the desert rose.',
+    image: nationalAttractionImage,
   },
   {
     id: 6,
     title: 'Inland Sea',
     description:
       'The Inland Sea (Khor Al Adaid) is a stunning natural reserve where the desert meets the sea. Accessible only by 4x4, it offers dramatic dune landscapes and serene turquoise waters near the Saudi border.',
+    image: inlandSeaImage,
   },
 ]
 
@@ -72,21 +93,119 @@ const TRAVEL_QUESTIONS = [
   {
     id: 'layover',
     question: 'Are you there on a layover or just for a day?',
-    answer:
-      'Placeholder: If you are on a short layover or day trip, consider visiting the Museum of Islamic Art, taking a stroll along the Corniche, or exploring Souq Waqif. The Doha Metro connects the airport to key spots quickly and affordably.',
+    answer: (
+      <>
+        If you are on a layover and would prefer a guided option, Hamad International Airport offers multiple
+        transit tour packages based on your layover duration.
+        <br />
+        <br />
+        In this case, you usually do not have to worry about visa formalities, as the team helps with the transit
+        visa process and ensures you return to the airport on time.
+        <br />
+        <br />
+        Link:{' '}
+        <a
+          href="https://www.discoverqatar.qa/transit-tours/?utm_source=qr&utm_medium=website&utm_campaign=transit-tours&utm_content=transit-tour-landing-page-content"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Discover Qatar Transit Tours
+        </a>
+        <br />
+        <br />
+        You can choose between bus tours and private vehicles based on your comfort level and budget.
+        <br />
+        <br />
+        If you prefer exploring on your own with public transport, there is also a guided one-day plan at the end of
+        this website, curated with a lot of love &lt;3.
+      </>
+    ),
   },
   {
     id: 'multi-day',
     question: 'Are you there to stay for a couple of days?',
-    answer:
-      'Placeholder: For a multi-day stay, you can spread your itinerary across Katara Cultural Village, The Pearl-Qatar, the National Museum, and Aspire Park. Renting a car or using ride-hailing apps gives you the most flexibility for day trips outside the city.',
+    answer: (
+      <>
+        If you are staying in Doha for a couple of days, you can slow down and enjoy each area without rushing.
+        A great way to plan is to split your days by theme&mdash;culture and museums, waterfront walks and cafes,
+        shopping and souqs, and a desert experience.
+        <br />
+        <br />
+        The Inland Sea (Khor Al Adaid) is best kept as a full day of its own, since it usually involves a longer
+        4x4 desert trip and you will want enough time to enjoy the dunes and views comfortably.
+        <br />
+        <br />
+        For city days, you can mix places like Katara Cultural Village, The Pearl, Souq Waqif, and the National
+        Museum based on your interests and energy level.
+        <br />
+        <br />
+        There are hotel links in the Shopping and Hotels section below, so you can choose a stay based on your
+        budget, trip length, and preferred activities.
+      </>
+    ),
   },
+]
+
+const FOREX_COUNTRIES = [
+  { country: 'India', currency: 'INR' },
+  { country: 'United States', currency: 'USD' },
+  { country: 'United Kingdom', currency: 'GBP' },
+  { country: 'European Union', currency: 'EUR' },
+  { country: 'United Arab Emirates', currency: 'AED' },
+  { country: 'Saudi Arabia', currency: 'SAR' },
+  { country: 'Canada', currency: 'CAD' },
+  { country: 'Australia', currency: 'AUD' },
+  { country: 'Singapore', currency: 'SGD' },
+  { country: 'Japan', currency: 'JPY' },
+  { country: 'Qatar', currency: 'QAR' },
+  { country: 'Kuwait', currency: 'KWD' },
+  { country: 'Bahrain', currency: 'BHD' },
+  { country: 'Oman', currency: 'OMR' },
+  { country: 'Jordan', currency: 'JOD' },
+  { country: 'Turkey', currency: 'TRY' },
+  { country: 'Egypt', currency: 'EGP' },
+  { country: 'South Africa', currency: 'ZAR' },
+  { country: 'Nigeria', currency: 'NGN' },
+  { country: 'Kenya', currency: 'KES' },
+  { country: 'China', currency: 'CNY' },
+  { country: 'Hong Kong', currency: 'HKD' },
+  { country: 'South Korea', currency: 'KRW' },
+  { country: 'Thailand', currency: 'THB' },
+  { country: 'Malaysia', currency: 'MYR' },
+  { country: 'Indonesia', currency: 'IDR' },
+  { country: 'Philippines', currency: 'PHP' },
+  { country: 'Vietnam', currency: 'VND' },
+  { country: 'Pakistan', currency: 'PKR' },
+  { country: 'Bangladesh', currency: 'BDT' },
+  { country: 'Sri Lanka', currency: 'LKR' },
+  { country: 'Nepal', currency: 'NPR' },
+  { country: 'Switzerland', currency: 'CHF' },
+  { country: 'Sweden', currency: 'SEK' },
+  { country: 'Norway', currency: 'NOK' },
+  { country: 'Denmark', currency: 'DKK' },
+  { country: 'Poland', currency: 'PLN' },
+  { country: 'Czech Republic', currency: 'CZK' },
+  { country: 'Hungary', currency: 'HUF' },
+  { country: 'Romania', currency: 'RON' },
+  { country: 'Russia', currency: 'RUB' },
+  { country: 'Israel', currency: 'ILS' },
+  { country: 'Brazil', currency: 'BRL' },
+  { country: 'Mexico', currency: 'MXN' },
+  { country: 'Argentina', currency: 'ARS' },
+  { country: 'Chile', currency: 'CLP' },
+  { country: 'Colombia', currency: 'COP' },
+  { country: 'New Zealand', currency: 'NZD' },
 ]
 
 function App() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [openQuestion, setOpenQuestion] = useState(null)
+  const [selectedCurrency, setSelectedCurrency] = useState('INR')
+  const [forexRate, setForexRate] = useState(null)
+  const [forexDate, setForexDate] = useState('')
+  const [isForexLoading, setIsForexLoading] = useState(false)
+  const [forexError, setForexError] = useState('')
   const totalCards = ATTRACTIONS.length
 
   const toggleQuestion = (id) => {
@@ -101,24 +220,92 @@ function App() {
     setCurrentCardIndex((prev) => (prev - 1 + totalCards) % totalCards)
   }, [totalCards])
 
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId)
+    if (!section) return
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   useEffect(() => {
     if (isPaused) return
     const timer = setInterval(goToNextCard, AUTO_SCROLL_MS)
     return () => clearInterval(timer)
   }, [isPaused, goToNextCard])
 
+  useEffect(() => {
+    let cancelled = false
+
+    const fetchFromFrankfurter = async (baseCurrency) => {
+      const response = await fetch(`https://api.frankfurter.app/latest?from=${baseCurrency}&to=QAR`)
+      if (!response.ok) throw new Error('Frankfurter request failed')
+      const data = await response.json()
+      const rate = data?.rates?.QAR
+      if (typeof rate !== 'number') throw new Error('Frankfurter response missing rate')
+      return { rate, date: data?.date || '' }
+    }
+
+    const fetchFromOpenErApi = async (baseCurrency) => {
+      const response = await fetch(`https://open.er-api.com/v6/latest/${baseCurrency}`)
+      if (!response.ok) throw new Error('Open ER API request failed')
+      const data = await response.json()
+      const rate = data?.rates?.QAR
+      if (typeof rate !== 'number') throw new Error('Open ER API response missing rate')
+      return { rate, date: data?.time_last_update_utc || '' }
+    }
+
+    const fetchForexRate = async () => {
+      setIsForexLoading(true)
+      setForexError('')
+
+      try {
+        const result =
+          selectedCurrency === 'QAR'
+            ? { rate: 1, date: '' }
+            : await fetchFromFrankfurter(selectedCurrency).catch(() => fetchFromOpenErApi(selectedCurrency))
+
+        if (!cancelled) {
+          setForexRate(result.rate)
+          setForexDate(result.date)
+        }
+      } catch (error) {
+        if (!cancelled) {
+          setForexRate(null)
+          setForexDate('')
+          setForexError('Could not load live rates right now. Please try again.')
+        }
+      } finally {
+        if (!cancelled) setIsForexLoading(false)
+      }
+    }
+
+    fetchForexRate()
+
+    return () => {
+      cancelled = true
+    }
+  }, [selectedCurrency])
+
   return (
     <div className="app">
-      <header className="header-bar">
-        <span className="header-label">Day In Doha Guide</span>
-      </header>
-
       <main className="main">
         <h1 className="main-title">Day In Doha Guide</h1>
 
         <section className="intro-cards">
           {INTRO_CARDS.map((card) => (
-            <article key={card.id} className="intro-card">
+            <article
+              key={card.id}
+              className="intro-card intro-card-interactive"
+              role="button"
+              tabIndex={0}
+              onClick={() => scrollToSection(card.targetSectionId)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  scrollToSection(card.targetSectionId)
+                }
+              }}
+              aria-label={`Go to ${card.title} section`}
+            >
               {card.image ? (
                 <img src={card.image} alt={card.title} className="intro-card-image" />
               ) : (
@@ -130,7 +317,7 @@ function App() {
           ))}
         </section>
 
-        <section className="attractions-section">
+        <section id="attractions-section" className="attractions-section">
           <h2 className="section-title">
             Tourist attractions and a little information about them for the curious
           </h2>
@@ -191,8 +378,8 @@ function App() {
           </div>
         </section>
 
-        <section className="travel-options-section">
-          <h2 className="travel-options-title">Travel options</h2>
+        <section id="travel-options-section" className="travel-options-section">
+          <h2 className="travel-options-title">Travel options and important information</h2>
 
           <p className="travel-options-intro">
             First things first, check your eligibility based on your passport and explore visa options
@@ -216,6 +403,57 @@ function App() {
               </a>
             </li>
           </ol>
+
+          <div className="forex-card">
+            <h3 className="forex-card-title">
+              Find out the currency conversion from your currency to QAR (Qatari Riyal)
+            </h3>
+            <label htmlFor="forex-country" className="forex-label">
+              Choose your country
+            </label>
+            <select
+              id="forex-country"
+              className="forex-select"
+              value={selectedCurrency}
+              onChange={(event) => setSelectedCurrency(event.target.value)}
+            >
+              {FOREX_COUNTRIES.map((item) => (
+                <option key={item.currency} value={item.currency}>
+                  {item.country} ({item.currency})
+                </option>
+              ))}
+            </select>
+
+            <p className="forex-result" aria-live="polite">
+              {isForexLoading && 'Loading live exchange rate...'}
+              {!isForexLoading && forexError && forexError}
+              {!isForexLoading && !forexError && forexRate !== null && (
+                <>
+                  1 {selectedCurrency} = {forexRate.toFixed(4)} QAR
+                  {forexDate ? ` (Updated: ${forexDate})` : ''}
+                </>
+              )}
+            </p>
+          </div>
+
+          <div className="payments-taxi-card">
+            <p className="payments-taxi-text">
+              International cards, especially <strong>Visa</strong> and <strong>Mastercard</strong>, are widely
+              accepted across Doha for shop, restaurant, hotel, and ATM transactions. <strong>American Express</strong>{' '}
+              and <strong>UnionPay</strong> are also accepted in many places, and contactless payments (
+              <strong>Apple Pay</strong>, <strong>Google Pay</strong>) are very common.
+            </p>
+            <p className="payments-taxi-text">
+              So in most cases, you do not need to worry about carrying a lot of cash. Also, <strong>Uber</strong> is
+              the most widely used car service in Doha.
+            </p>
+            <div className="taxi-photo-row">
+              <div className="taxi-photo-placeholder">
+                <img src={taxiImage} alt="Local taxi in Doha" className="taxi-photo" />
+              </div>
+              <p className="taxi-side-note">This is what local taxis look like.</p>
+            </div>
+          </div>
 
           <p className="travel-options-subtext">
             Now that we have entering Doha all figured out let&apos;s see how we want to go around the city
@@ -247,13 +485,13 @@ function App() {
               <div
                 className={`travel-accordion-panel ${openQuestion === item.id ? 'travel-accordion-panel-open' : ''}`}
               >
-                <p className="travel-accordion-answer">{item.answer}</p>
+                <div className="travel-accordion-answer">{item.answer}</div>
               </div>
             </div>
           ))}
         </section>
 
-        <section className="shopping-hotels-section">
+        <section id="shopping-hotels-section" className="shopping-hotels-section">
           <h2 className="shopping-hotels-title">Shopping and hotels</h2>
 
           <div className="shopping-hotels-block">
@@ -298,7 +536,7 @@ function App() {
           <div className="shopping-hotels-block">
             <h3 className="shopping-hotels-subtitle">Shopping at Souq Waqif</h3>
             <p className="shopping-hotels-text">
-              If you are looking for souvenirs to take home, Souq Waqif is the place to go. The winding alleys are packed with stalls selling traditional keepsakes &mdash; think embroidered hats, keychains, miniature dhow boats, Arabic coffee sets, and handcrafted textiles. Prices are reasonable and bargaining is part of the fun.
+              If you are looking for souvenirs to take home, Souq Waqif is the place to go. The winding alleys are packed with stalls selling traditional keepsakes ; embroidered hats, keychains, miniature dhow boats, Arabic coffee sets, and handcrafted textiles. Prices are reasonable and bargaining is part of the fun.
             </p>
           </div>
 
@@ -310,7 +548,7 @@ function App() {
 
             <div className="attar-feature">
               <div className="attar-image-placeholder">
-                <span className="attar-image-label">Your attar photo here</span>
+                <img src={attarsImage} alt="Local attars in Doha" className="attar-image" />
               </div>
               <div className="attar-note">
                 <p className="attar-note-text">
@@ -336,9 +574,11 @@ function App() {
           </p>
 
           <div className="itinerary-metro-pass">
-            <div className="metro-pass-photo-placeholder">
-              <span className="metro-pass-photo-label">Day pass photo here</span>
-            </div>
+            <img
+              src={dohaMetroImage}
+              alt="Doha Metro day pass"
+              className="metro-pass-photo"
+            />
             <div className="metro-pass-info">
               <h3 className="metro-pass-heading">Step 0: Buy a Doha Metro Day Pass</h3>
               <p className="metro-pass-text">
@@ -351,6 +591,15 @@ function App() {
                 <strong>Tip:</strong> Google Maps works excellently in Doha &mdash; it tells you exactly which metro line to take, which station to get off at, and gives walking directions from the station to your destination. Keep it handy throughout the day.
               </p>
             </div>
+          </div>
+
+          <div className="metro-map-block">
+            <h3 className="metro-map-title">This is the map</h3>
+            <img
+              src={dohaMetroRouteMap}
+              alt="Doha Metro route map"
+              className="metro-map-image"
+            />
           </div>
 
           <div className="itinerary-timeline">
@@ -529,6 +778,17 @@ function App() {
             </ul>
           </div>
         </section>
+
+        <p className="itinerary-reel-link">
+          Here is a little sneak peak via Instagram reel of this very itinerary:{' '}
+          <a
+            href="https://www.instagram.com/reel/DTFGPqJkr5m/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            target="_blank"
+            rel="noreferrer"
+          >
+            Watch the reel
+          </a>
+        </p>
       </main>
     </div>
   )

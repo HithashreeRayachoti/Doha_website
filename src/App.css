@@ -1,20 +1,22 @@
-/* Wireframe colors: cream #FFF3CC, header dark, card placeholders teal/pink/orange, overlay blur */
+/* Palette: #FF9900, #FFDC5E, #FCF6BD, #FFB4B4, #FF69B4 */
+
+:root {
+  --c-orange: #FF9900;
+  --c-mustard: #FFDC5E;
+  --c-lemon: #FCF6BD;
+  --c-melon: #FFB4B4;
+  --c-pink: #FF69B4;
+}
 
 .app {
   min-height: 100vh;
-  background-color: #FFF3CC;
+  background-color: #E0CC97;
 }
 
-@media (max-width: 768px) {
-  .app {
-    background-color: #FFF8DC;
-  }
-}
-
-/* Header bar - dark grey/black, white text */
+/* Header bar */
 .header-bar {
-  background-color: #2d2d2d;
-  color: #fff;
+  background-color: var(--c-orange);
+  color: #000;
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
 }
@@ -34,9 +36,12 @@
   font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 700;
-  color: #000;
+  color: #6B4F3A;
+  background-color: rgba(252, 246, 189, 0.8);
+  border-radius: 10px;
   text-align: center;
   margin: 1rem 0 2rem;
+  padding: 0.45rem 0.75rem;
 }
 
 /* Intro cards - 3 across desktop, stack mobile */
@@ -59,6 +64,7 @@
   background: transparent;
   border-radius: 8px;
   overflow: hidden;
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
 }
 
 @media (max-width: 768px) {
@@ -74,6 +80,7 @@
   aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 6px 6px 0 0;
+  transition: transform 0.24s ease;
 }
 
 @media (max-width: 768px) {
@@ -124,9 +131,25 @@
   line-height: 1.45;
 }
 
+.intro-card-interactive {
+  cursor: pointer;
+}
+
+.intro-card-interactive:hover,
+.intro-card-interactive:focus-visible {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  outline: none;
+}
+
+.intro-card-interactive:hover .intro-card-image,
+.intro-card-interactive:focus-visible .intro-card-image {
+  transform: scale(1.05);
+}
+
 /* ─── Attractions section ─── */
 .attractions-section {
-  background-color: #F5E8B8;
+  background-color: var(--c-lemon);
   padding: 2rem 1rem 2.5rem;
   margin: 0 -1rem;
 }
@@ -142,11 +165,12 @@
   font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.4rem, 2.8vw, 2.1rem);
   font-weight: 700;
-  color: #000;
-  background-color: rgba(255, 255, 255, 0.35);
+  color: #6B4F3A;
+  background-color: rgba(252, 246, 189, 0.8);
   text-align: center;
   margin: 0 0 2rem;
   padding: 0.55rem 1rem;
+  border-radius: 8px;
 }
 
 /* ─── Carousel wrapper ─── */
@@ -259,7 +283,7 @@
   width: 48px;
   height: 48px;
   border: none;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(252, 246, 189, 0.88);
   color: #000;
   font-size: 1.5rem;
   line-height: 1;
@@ -275,7 +299,7 @@
 }
 
 .card-arrow:hover {
-  background: #fff;
+  background: rgba(255, 180, 180, 0.86);
   transform: translateY(-50%) scale(1.08);
 }
 
@@ -352,11 +376,13 @@
 .travel-options-title {
   margin: 0 0 1.25rem;
   padding: 0.55rem 1rem;
-  background-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(252, 246, 189, 0.8);
   font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.4rem, 2.8vw, 2.1rem);
   font-weight: 700;
+  color: #6B4F3A;
   text-align: center;
+  border-radius: 8px;
 }
 
 .travel-options-intro,
@@ -364,8 +390,9 @@
   margin: 0 0 1.4rem;
   max-width: 980px;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1.15rem, 2.8vw, 1.9rem);
-  line-height: 1.35;
+  font-size: clamp(1rem, 2.1vw, 1.18rem);
+  line-height: 1.65;
+  color: #222;
 }
 
 .travel-options-list {
@@ -373,14 +400,125 @@
   padding-left: 1.4rem;
   max-width: 980px;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1rem, 2.3vw, 1.2rem);
-  line-height: 1.7;
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  line-height: 1.75;
+  color: #222;
 }
 
 .travel-options-list a {
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+.forex-card {
+  max-width: 980px;
+  margin: 0 0 1.5rem;
+  padding: 1rem 1rem 1.1rem;
+  border-radius: 10px;
+  background: rgba(252, 246, 189, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.forex-card-title {
+  margin: 0 0 0.7rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #6B4F3A;
+}
+
+.forex-label {
+  display: block;
+  margin: 0 0 0.45rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.forex-select {
+  width: min(100%, 380px);
+  padding: 0.55rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  background: #fff;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.forex-result {
+  margin: 0.75rem 0 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.95rem, 1.9vw, 1.06rem);
+  line-height: 1.55;
+  color: #222;
+}
+
+.payments-taxi-card {
+  max-width: 980px;
+  margin: 0 0 1.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background: rgba(255, 180, 180, 0.28);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.payments-taxi-text {
+  margin: 0 0 0.7rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  line-height: 1.65;
+  color: #222;
+}
+
+.payments-taxi-text:last-of-type {
+  margin-bottom: 0.9rem;
+}
+
+.taxi-photo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.taxi-photo-placeholder {
+  width: min(100%, 360px);
+  height: 180px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taxi-side-note {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.92rem, 1.9vw, 1.04rem);
+  color: #6B4F3A;
+  max-width: 260px;
+}
+
+.taxi-photo-label {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.9rem;
+  color: #6B4F3A;
+}
+
+.taxi-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+@media (max-width: 700px) {
+  .taxi-photo-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* ─── Accordion questions ─── */
@@ -401,14 +539,15 @@
   background: none;
   cursor: pointer;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
-  line-height: 1.35;
+  font-size: clamp(1.02rem, 2.1vw, 1.28rem);
+  line-height: 1.5;
+  font-weight: 600;
   text-align: left;
   color: #000;
 }
 
 .travel-accordion-trigger:hover {
-  color: #333;
+  color: var(--c-orange);
 }
 
 .travel-accordion-trigger:focus-visible {
@@ -433,16 +572,23 @@
 }
 
 .travel-accordion-panel-open {
-  max-height: 300px;
+  max-height: 900px;
   padding: 0 0.25rem 1rem;
 }
 
 .travel-accordion-answer {
-  margin: 0;
+  margin: 0.25rem 0 0;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(0.95rem, 2vw, 1.1rem);
-  line-height: 1.6;
-  color: #333;
+  line-height: 1.7;
+  letter-spacing: 0.005em;
+  color: #222;
+}
+
+.travel-accordion-answer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* ─── Shopping & Hotels section ─── */
@@ -454,11 +600,13 @@
 .shopping-hotels-title {
   margin: 0 0 1.5rem;
   padding: 0.55rem 1rem;
-  background-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(252, 246, 189, 0.8);
   font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.4rem, 2.8vw, 2.1rem);
   font-weight: 700;
+  color: #6B4F3A;
   text-align: center;
+  border-radius: 8px;
 }
 
 .shopping-hotels-block {
@@ -489,7 +637,7 @@
 }
 
 .shopping-hotels-text a:hover {
-  color: #555;
+  color: var(--c-pink);
 }
 
 .shopping-hotels-list {
@@ -508,7 +656,7 @@
 }
 
 .shopping-hotels-list a:hover {
-  color: #555;
+  color: var(--c-pink);
 }
 
 .shopping-hotels-list li {
@@ -556,10 +704,17 @@
   font-style: italic;
 }
 
+.attar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .attar-note {
   flex: 1;
-  background: rgba(255, 255, 255, 0.45);
-  border-left: 3px solid #c9a96e;
+  background: rgba(252, 246, 189, 0.75);
+  border-left: 3px solid var(--c-orange);
   border-radius: 0 8px 8px 0;
   padding: 1rem 1.25rem;
 }
@@ -573,7 +728,7 @@
 }
 
 .attar-note-icon {
-  color: #c9a96e;
+  color: var(--c-pink);
   font-size: 1.1rem;
 }
 
@@ -586,11 +741,13 @@
 .itinerary-title {
   margin: 0 0 0.75rem;
   padding: 0.55rem 1rem;
-  background-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(252, 246, 189, 0.8);
   font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.4rem, 2.8vw, 2.1rem);
   font-weight: 700;
+  color: #6B4F3A;
   text-align: center;
+  border-radius: 8px;
 }
 
 .itinerary-subtitle {
@@ -648,6 +805,23 @@
   font-style: italic;
 }
 
+.metro-pass-photo {
+  flex: 0 0 180px;
+  width: 180px;
+  height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .metro-pass-photo {
+    flex: none;
+    width: 100%;
+    height: 220px;
+  }
+}
+
 .metro-pass-info {
   flex: 1;
 }
@@ -675,9 +849,31 @@
   color: #555;
   margin: 0.75rem 0 0;
   padding: 0.6rem 0.8rem;
-  background: rgba(201, 169, 110, 0.12);
-  border-left: 3px solid #c9a96e;
+  background: rgba(255, 180, 180, 0.24);
+  border-left: 3px solid var(--c-pink);
   border-radius: 0 6px 6px 0;
+}
+
+.metro-map-block {
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.metro-map-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  margin: 0 0 0.9rem;
+  color: var(--c-orange);
+}
+
+.metro-map-image {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
 }
 
 /* Timeline of stops */
@@ -739,18 +935,18 @@
 }
 
 .itinerary-badge-metro {
-  background: #dce8f0;
-  color: #2a5f8a;
+  background: rgba(252, 246, 189, 0.9);
+  color: var(--c-orange);
 }
 
 .itinerary-badge-uber {
-  background: #f5e6d0;
-  color: #8a5a2a;
+  background: rgba(255, 180, 180, 0.82);
+  color: var(--c-orange);
 }
 
 .itinerary-badge-walk {
-  background: #ddf0dc;
-  color: #3a7a3a;
+  background: rgba(255, 105, 180, 0.8);
+  color: var(--c-lemon);
 }
 
 .itinerary-stop-details {
@@ -827,4 +1023,88 @@
   border-top: 1px solid rgba(0, 0, 0, 0.15);
   font-size: clamp(0.95rem, 1.9vw, 1.08rem);
   color: #000;
+}
+
+.itinerary-reel-link {
+  margin: 0.75rem 0 0.25rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  color: #222;
+}
+
+.itinerary-reel-link a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Small-phone polish */
+@media (max-width: 430px) {
+  .main {
+    padding: 1rem 0.75rem 1.5rem;
+  }
+
+  .main-title,
+  .section-title,
+  .travel-options-title,
+  .shopping-hotels-title,
+  .itinerary-title {
+    font-size: 1.3rem;
+    line-height: 1.3;
+    padding: 0.5rem 0.65rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .intro-cards {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-card-title {
+    font-size: 1rem;
+    margin-top: 0.6rem;
+  }
+
+  .intro-card-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .travel-options-intro,
+  .travel-options-subtext {
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .travel-options-list {
+    padding-left: 1.15rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .travel-accordion-trigger {
+    font-size: 1rem;
+    padding: 0.8rem 0.15rem;
+  }
+
+  .forex-card,
+  .payments-taxi-card,
+  .itinerary-metro-pass,
+  .metro-map-block,
+  .itinerary-cost-summary {
+    padding: 0.85rem;
+  }
+
+  .forex-select {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .card-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .itinerary-stop-map {
+    height: 185px;
+  }
 }
